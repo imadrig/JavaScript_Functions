@@ -101,3 +101,30 @@ isATriangle(2, 2, 3);
 
 // Exercise 5 Section
 console.log("EXERCISE 5:\n==========\n");
+
+function dataUsage (planLimit, day, usage){
+    let averageDailyUsage = (usage / day).toFixed(2);
+    let allowedDailyUsage = planLimit / 30;
+    let exceedingUsage = false;
+    let daysRemaining = 30 - day;
+    let estimatedDataUse = (averageDailyUsage * 30).toFixed(2);
+    let planLimitVsEstimatedUse = Math.abs((planLimit - estimatedDataUse).toFixed(2));
+    let roundedAllowedDailyUsage = allowedDailyUsage.toFixed(2);
+
+    console.log("Hello! Thanks for inquiring about your data usage. Below are the details:");
+    console.log(`${day} days used, ${daysRemaining} days remaining`);
+    console.log(`Average daily use: ${averageDailyUsage} GB/day`);
+
+    if (averageDailyUsage <= allowedDailyUsage){
+        console.log("If you continue at or below your current usage, you will not exceed your plan limit.");
+        return;
+    } else {
+        exceedingUsage = true;
+    }
+
+    if (exceedingUsage == true) {
+        console.log(`You are EXCEEDING your plan limit based on your average daily usage. You will exceed your plan by ${planLimitVsEstimatedUse} GB. To ensure you stay at or below your plan limit, use no more than ${roundedAllowedDailyUsage} GB/day.`);
+    }
+}
+
+dataUsage(200,20,229);
